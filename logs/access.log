@@ -1,0 +1,11 @@
+POST /api/on-covid-19/xml 200 270.517 ms
+POST /api/on-covid-19/xml 200 419.124 ms
+POST /api/on-covid-19/xml 200 86.264 ms
+POST /api/on-covid-19/xml 200 107.421 ms
+POST /api/on-covid-19/xml 402 113.361 ms
+POST /api/on-covid-19/xml 400 66.629 ms
+POST /api/on-covid-19/logs 404 3911.922 ms
+GET /api/on-covid-19/logs 200 86.961 ms
+POST /api/on-covid-19/json 400 9.164 ms
+POST /api/on-covid-19/logs 404 2241.534 ms
+GET /api/on-covid-19/logs 200 14.445 ms

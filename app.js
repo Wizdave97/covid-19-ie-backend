@@ -16,7 +16,7 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'logs/access.l
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use(logger(':method :url :status :response-time ms', { stream: accessLogStream}));
+app.use(logger(':method\t\t:url\t\t:status\t\t:response-time\tms', { stream: accessLogStream}));
 app.use(express.json());
 app.use(expressSanitizer());
 app.use(express.urlencoded({ extended: false }));

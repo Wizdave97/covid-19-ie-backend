@@ -80,7 +80,8 @@ module.exports = {
                 const results=covidImpactEstimator(data);
                 const xml = convert.js2xml(results,{compact:true, spaces:4})
                 res.set({
-                    'Content-Type':"application/xml"
+                    'Content-Type':"application/xml",
+                    "Content-Length":xml.length
                 });
                 res.status(200).send(xml);
             }

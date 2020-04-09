@@ -9,7 +9,8 @@ module.exports= {
                     }
                     else{
                         res.set({
-                            "Content-Type":"text/plain"
+                            "Content-Type":"text/plain",
+                            "Content-Length":str.length
                         });
                         res.status(200).send(str);
                     }

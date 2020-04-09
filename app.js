@@ -24,8 +24,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
-app.use('/api/on-covid-19', indexRouter);
-app.use('/api/on-covid-19/logs', logsRouter);
+app.use('/api/v1/on-covid-19', indexRouter);
+app.use('/api/v1/on-covid-19/logs', logsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

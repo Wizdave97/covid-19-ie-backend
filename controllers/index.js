@@ -4,7 +4,7 @@ const periodTypes={days:'days',weeks:'weeks',months:'months'}
 
 const validateBody = (req) => {
     const data = {region:{}};
-    const errors = {region:{}}
+    const errors = {}
     
     let periodType =typeof req.body.periodType === 'string' && req.body.periodType.length >0?req.sanitize(req.body.periodType.trim()):false;
     let timeToElapse= typeof req.body.timeToElapse === 'number' && req.body.timeToElapse >=0?req.body.timeToElapse:false;
@@ -19,7 +19,7 @@ const validateBody = (req) => {
     else errors.periodType="Required field, must be one of days, weeks or months"
 
     if(name ) data.region.name=name;
-    else errors.region.name="Required field, must be one of days, weeks or months";
+    else errors.region?errors.region.name = "Required field, must be  a string":errors.region={ name:"Required field, must be a string"};
 
     if(typeof timeToElapse === 'number') data.timeToElapse=timeToElapse;
     else errors.timeToElapse = "Required, must be a number";
@@ -34,13 +34,13 @@ const validateBody = (req) => {
     else errors.totalHospitalBeds = "Required, must be a number";
 
     if(typeof avgAge === 'number') data.region.avgAge = avgAge;
-    else errors.region.avgAge = "Required, must be a number";
+    else errors.region?errors.region.avgAge = "Required, must be a number":errors.region={ avgAge: "Required, must be a number"};
 
     if(typeof avgDailyIncomeInUSD === 'number') data.region.avgDailyIncomeInUSD = avgDailyIncomeInUSD;
-    else errors.region.avgDailyIncomeInUSD = "Required, must be a number";
+    else errors.region?errors.region.avgDailyIncomeInUSD = "Required, must be a number":errors.region={ avgDailyIncomeInUSD: "Required, must be a number"};
 
     if(typeof avgDailyIncomePopulation === 'number') data.region.avgDailyIncomePopulation = avgDailyIncomePopulation;
-    else errors.region.avgDailyIncomePopulation = "Required, must be a number";
+    else errors.region?errors.region.avgDailyIncomePopulation = "Required, must be a number":errors.region={ avgDailyIncomePopulation: "Required, must be a number"};
 
     return {errors, data};
 } 
@@ -63,7 +63,7 @@ module.exports = {
             }
         }
         catch(err) {
-            console.log(err)
+            //console.log(err)
         }
         
     },
@@ -79,7 +79,6 @@ module.exports = {
             else {
                 const results=covidImpactEstimator(data);
                 const xml = convert.js2xml(results,{compact:true, spaces:4})
-                console.log(xml);
                 res.set({
                     'Content-Type':"application/xml"
                 });
@@ -87,7 +86,7 @@ module.exports = {
             }
         }
         catch (err) {
-            console.log(err)
+            //console.log(err)
         }
        
     }

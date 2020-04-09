@@ -4,7 +4,7 @@ const periodTypes={days:'days',weeks:'weeks',months:'months'}
 
 const validateBody = (req) => {
     const data = {region:{}};
-    const errors = {}
+    const errors = {region:{}}
     
     let periodType =typeof req.body.periodType === 'string' && req.body.periodType.length >0?req.sanitize(req.body.periodType.trim()):false;
     let timeToElapse= typeof req.body.timeToElapse === 'number' && req.body.timeToElapse >=0?req.body.timeToElapse:false;
@@ -19,7 +19,7 @@ const validateBody = (req) => {
     else errors.periodType="Required field, must be one of days, weeks or months"
 
     if(name ) data.region.name=region.name;
-    else errors.name="Required field, must be one of days, weeks or months";
+    else errors.region.name="Required field, must be one of days, weeks or months";
 
     if(typeof timeToElapse === 'number') data.timeToElapse=timeToElapse;
     else errors.timeToElapse = "Required, must be a number";

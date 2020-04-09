@@ -18,7 +18,7 @@ const validateBody = (req) => {
     if(periodType === periodTypes.days || periodType === periodTypes.weeks || periodTypes.months ) data.periodType=periodType;
     else errors.periodType="Required field, must be one of days, weeks or months"
 
-    if(name ) data.region.name=region.name;
+    if(name ) data.region.name=name;
     else errors.region.name="Required field, must be one of days, weeks or months";
 
     if(typeof timeToElapse === 'number') data.timeToElapse=timeToElapse;

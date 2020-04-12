@@ -16,7 +16,14 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'logs/access.l
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use(logger(':method\t\t:url\t\t:status\t\t:response-time\tms', { stream: accessLogStream}));
+app.use(logger(function (tokens, req, res) {
+  return [
+    tokens.method(req, res),'\t',
+    tokens.url(req, res),'\t',
+    tokens.status(req, res),'\t',
+    Math.floor(tokens['response-time'](req, res))
+  ].join(' ')+'ms'
+}, { stream: accessLogStream}));
 app.use(express.json());
 app.use(expressSanitizer());
 app.use(express.urlencoded({ extended: false }));
